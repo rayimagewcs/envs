@@ -1,0 +1,116 @@
+version: '3'
+
+services:
+  redis0:
+    image: redis:6.2.5
+    container_name: redis0
+    #network_mode: bridge
+    restart: always
+    ports:
+      - 6000:6000
+      - 16000:16000
+    volumes:
+       - ./6000/conf/redis.conf:/etc/redis/redis.conf:rw
+       - ./6000/data:/data:rw
+       - /etc/localtime:/etc/localtime
+    command:
+      redis-server  /etc/redis/redis.conf
+    networks:
+      redis:
+        ipv4_address: 172.38.0.10
+        
+  redis1:
+    image: redis:6.2.5
+    container_name: redis1
+    #network_mode: bridge
+    restart: always
+    ports:
+      - 6001:6001
+      - 16001:16001
+    volumes:
+       - ./6001/conf/redis.conf:/etc/redis/redis.conf:rw
+       - ./6001/data:/data:rw
+       - /etc/localtime:/etc/localtime
+    command:
+      redis-server  /etc/redis/redis.conf
+    networks:
+      redis:
+        ipv4_address: 172.38.0.11
+
+  redis2:
+    image: redis:6.2.5
+    container_name: redis2
+    #network_mode: bridge
+    restart: always
+    ports:
+      - 6002:6002
+      - 16002:16002
+    volumes:
+       - ./6002/conf/redis.conf:/etc/redis/redis.conf:rw
+       - ./6002/data:/data:rw
+       - /etc/localtime:/etc/localtime
+    command:
+      redis-server  /etc/redis/redis.conf
+    networks:
+      redis:
+        ipv4_address: 172.38.0.12
+  redis3:
+    image: redis:6.2.5
+    container_name: redis3
+    #network_mode: bridge
+    restart: always
+    ports:
+      - 6003:6003
+      - 16003:16003
+    volumes:
+       - ./6003/conf/redis.conf:/etc/redis/redis.conf:rw
+       - ./6003/data:/data:rw
+       - /etc/localtime:/etc/localtime
+    command:
+      redis-server  /etc/redis/redis.conf
+    networks:
+      redis:
+        ipv4_address: 172.38.0.13
+
+  redis4:
+    image: redis:6.2.5
+    container_name: redis4
+    #network_mode: bridge
+    restart: always
+    ports:
+      - 6004:6004
+      - 16004:16004
+    volumes:
+       - ./6004/conf/redis.conf:/etc/redis/redis.conf:rw
+       - ./6004/data:/data:rw
+       - /etc/localtime:/etc/localtime
+    command:
+      redis-server  /etc/redis/redis.conf
+    networks:
+      redis:
+        ipv4_address: 172.38.0.14
+
+  redis5:
+    image: redis:6.2.5
+    container_name: redis5
+    #network_mode: bridge
+    restart: always
+    ports:
+      - 6005:6005
+      - 16005:16005
+    volumes:
+       - ./6005/conf/redis.conf:/etc/redis/redis.conf:rw
+       - ./6005/data:/data:rw
+       - /etc/localtime:/etc/localtime
+    command:
+      redis-server  /etc/redis/redis.conf
+    networks:
+      redis:
+        ipv4_address: 172.38.0.15
+
+networks:
+  redis:
+    ipam:
+      driver: default
+      config:
+        - subnet: "172.38.0.0/24"
