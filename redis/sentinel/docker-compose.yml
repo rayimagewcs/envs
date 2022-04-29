@@ -1,0 +1,23 @@
+version: '2'
+
+networks:
+  sentinel:
+    driver: bridge
+
+services:
+  redis-sentinel:
+    image: 'bitnami/redis-sentinel:latest'
+    environment:
+      - REDIS_MASTER_HOST=192.168.22.10
+      # redis.conf: port 6000
+      - REDIS_MASTER_PORT_NUMBER=6000
+      # redis.conf: masterauth admin
+      - REDIS_MASTER_PASSWORD=admin
+      # redis.conf: requirepass admin
+      - REDIS_PASSWORD=admin
+      # docker 方式启动 sentinel，需要添加此配置，用以多sentinel容器之间跨机器访问
+      - REDIS_SENTINEL_ANNOUNCE_IP=192.168.22.10
+    ports:
+      - '26379-26381:26379'
+    networks:
+      - sentinel
